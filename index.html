@@ -13,12 +13,14 @@
 <h1>Popup Test Page</h1>
 <script>
 Object.defineProperty(document, "cookie", {
+    configurable: true,
+    get: function() {
+        console.warn("Cookie read blocked (simulated)");
+        return "";
+    },
     set: function() {
         console.warn("Cookie write blocked (simulated)");
         return true;
-    },
-    get: function() {
-        return "";
     }
 });
 </script>
@@ -31,6 +33,7 @@ Object.defineProperty(document, "cookie", {
 
 </body>
 </html>
+
 
 
 
