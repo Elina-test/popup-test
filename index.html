@@ -11,14 +11,25 @@
 <body>
 
 <h1>Popup Test Page</h1>
-
+<script>
+Object.defineProperty(document, "cookie", {
+    set: function() {
+        console.warn("Cookie write blocked (simulated)");
+        return true;
+    },
+    get: function() {
+        return "";
+    }
+});
+</script>
 <script>
     console.log("jQuery check:", typeof jQuery);
     var HfToken = '735B90B4568125ED6C3F678819B6E058';
 </script>
 
-<script src="https://flows.herobase.com/js/hf_popup.js"></script>
+<script src="https://s2.flows.herobase.com/js/hf_popup.js"></script>
 
 </body>
 </html>
+
 
