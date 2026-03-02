@@ -2,55 +2,36 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Consent Simulation</title>
-	    <!-- 1️⃣ Load jQuery FIRST -->
+    <title>Realistic Reproduction</title>
+
+    <!-- Load jQuery like production -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Token defined globally like production -->
+    <script>
+        window.HfToken = '735B90B4568125ED6C3F678819B6E058';
+    </script>
+
+    <!-- Load popup immediately (like production) -->
+    <script src="https://s2.flows.herobase.com/js/hf_popup.js"></script>
+
 </head>
 <body>
 
-<h2>Simulated CMP</h2>
+<h2>Simulated Consent Banner</h2>
 
-<div id="consent">
+<div id="cmp" style="position:fixed;bottom:0;background:#eee;padding:20px;width:100%;">
     <button onclick="accept()">Accept cookies</button>
 </div>
 
 <script>
-// Simulate blocked storage before consent
-var consentGiven = false;
-
-Object.defineProperty(document, "cookie", {
-    configurable: true,
-    get: function() {
-        if (!consentGiven) {
-            console.warn("Cookie read blocked (before consent)");
-            return "";
-        }
-        return "";
-    },
-    set: function() {
-        if (!consentGiven) {
-            console.warn("Cookie write blocked (before consent)");
-            return true;
-        }
-        return true;
-    }
-});
-
 function accept() {
-    consentGiven = true;
-    document.getElementById("consent").style.display = "none";
-
-    var HfToken = '735B90B4568125ED6C3F678819B6E058';
-
-    var script = document.createElement("script");
-    script.src = "https://s2.flows.herobase.com/js/hf_popup.js";
-    document.body.appendChild(script);
+    document.getElementById("cmp").style.display = "none";
 }
 </script>
 
 </body>
 </html>
-
 
 
 
