@@ -2,37 +2,53 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>HF Popup Test</title>
-
-    <!-- Load jQuery FIRST -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <title>Consent Simulation</title>
 </head>
 <body>
 
-<h1>Popup Test Page</h1>
+<h2>Simulated CMP</h2>
+
+<div id="consent">
+    <button onclick="accept()">Accept cookies</button>
+</div>
+
 <script>
+// Simulate blocked storage before consent
+var consentGiven = false;
+
 Object.defineProperty(document, "cookie", {
     configurable: true,
     get: function() {
-        console.warn("Cookie read blocked (simulated)");
+        if (!consentGiven) {
+            console.warn("Cookie read blocked (before consent)");
+            return "";
+        }
         return "";
     },
     set: function() {
-        console.warn("Cookie write blocked (simulated)");
+        if (!consentGiven) {
+            console.warn("Cookie write blocked (before consent)");
+            return true;
+        }
         return true;
     }
 });
-</script>
-<script>
-    console.log("jQuery check:", typeof jQuery);
-    var HfToken = '735B90B4568125ED6C3F678819B6E058';
-</script>
 
-<script src="https://flows.herobase.com/js/hf_popup.js"></script>
+function accept() {
+    consentGiven = true;
+    document.getElementById("consent").style.display = "none";
+
+    var HfToken = '735B90B4568125ED6C3F678819B6E058';
+
+    var script = document.createElement("script");
+    script.src = "https://flows.herobase.com/js/hf_popup.js";
+    document.body.appendChild(script);
+}
+</script>
 
 </body>
 </html>
+
 
 
 
