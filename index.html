@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>HF Popup Test</title>
+
+    <!-- Load jQuery FIRST -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
 <h1>Popup Test Page</h1>
 
-<!-- 1️⃣ Load jQuery FIRST -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- 2️⃣ Then define token -->
 <script>
+    console.log("jQuery check:", typeof jQuery);
     var HfToken = '735B90B4568125ED6C3F678819B6E058';
 </script>
 
-<!-- 3️⃣ Then load popup script -->
 <script src="https://s2.flows.herobase.com/js/hf_popup.js"></script>
 
 </body>
